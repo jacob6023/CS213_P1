@@ -1,4 +1,3 @@
-package org.example;
 
 public enum Timeslot {
     SLOT1 (9, 0),
@@ -13,6 +12,10 @@ public enum Timeslot {
     Timeslot(int hour, int minute){
         this.hour = hour;
         this.minute = minute;
+    }
+    @Override
+    public String toString(){
+        return hour + ":"+ minute;
     }
 
 }
