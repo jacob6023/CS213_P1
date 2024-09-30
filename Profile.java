@@ -2,7 +2,7 @@
 public class Profile implements Comparable<Profile> {
     private String fName;
     private String lName;
-    private Date dob;  // Using the custom Date class provided
+    private Date dob;  //Using the custom Date class provided
 
     public Profile(String fName, String lName, int month, int day, int year) {
         this.fName = fName;
@@ -41,8 +41,8 @@ public class Profile implements Comparable<Profile> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;  // Check for reference equality.
-        if (obj == null || !(obj instanceof Profile)) return false;  // Check for null and ensure the object is an instance of Profile.
+        if (this == obj) return true;  //Check for reference equality.
+        if (obj == null || !(obj instanceof Profile)) return false;  //Check for null and ensure the object is an instance of Profile.
 
         Profile other = (Profile) obj;  //Safe cast after instanceof check.
 
@@ -67,7 +67,7 @@ public class Profile implements Comparable<Profile> {
             return false;
         }
 
-        return true;  // If all fields are equal, return true.
+        return true;  //If all fields are equal, return true.
     }
 
 
@@ -78,11 +78,11 @@ public class Profile implements Comparable<Profile> {
         Profile p2 = new Profile("Jane", "Doe", 5, 15, 1995);
         Profile p3 = new Profile("John", "Smith", 1, 1, 1990);
 
-        // Comparing p1 with p3 - They should be identical
+        //Comparing p1 with p3 - They should be identical
         System.out.println("Comparing p1 to p3 (should return 0): " + p1.compareTo(p3));
         System.out.println("Checking equality of p1 and p3 (should be true): " + p1.equals(p3));
 
-        // Comparing p1 with p2 - They should be different
+        //Comparing p1 with p2 - They should be different
         System.out.println("Comparing p1 to p2 (should return a non-zero value): " + p1.compareTo(p2));
         System.out.println("Checking equality of p1 and p2 (should be false): " + p1.equals(p2));
     }
