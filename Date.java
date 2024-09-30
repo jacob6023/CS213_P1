@@ -1,4 +1,3 @@
-package org.example;
 
 public class Date implements Comparable<Date> {
     private int year;
@@ -36,6 +35,7 @@ public class Date implements Comparable<Date> {
     }
 
     public boolean isValid(Date date){
+
         return true;
     } //check if the date is a valid calendar date
 
@@ -56,6 +56,17 @@ public class Date implements Comparable<Date> {
     public String toString(){
         return month + "/" + day + "/" + year;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(obj instanceof Date)) return false;
+        Date other = (Date) obj;
+        return this.year == other.year && this.month == other.month && this.day == other.day;
+    }
+
 }
+
+
+
 
 
