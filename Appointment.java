@@ -1,4 +1,6 @@
-public class Appointment implements Comparable<Appointment> {
+package org.example;
+
+public class Appointment implements Comparable <Appointment> {
     private Date date;
     private Timeslot timeslot;
     private Profile patient;
@@ -11,26 +13,32 @@ public class Appointment implements Comparable<Appointment> {
         this.provider = provider;
     }
 
-    @Override
-    public int compareTo(Appointment other) {
-        int dateCmp = this.date.compareTo(other.date);
-        if (dateCmp != 0) return dateCmp;
-        int slotCmp = this.timeslot.compareTo(other.timeslot);
-        if (slotCmp != 0) return slotCmp;
-        return this.patient.compareTo(other.patient);
+    public Date getDate() {
+        return date;
+    }
+
+    public Timeslot getTimeslot() {
+        return timeslot;
+    }
+
+    public Profile getPatient() {
+        return patient;
+    }
+
+    public Provider getProvider() {
+        return provider;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Appointment) {
-            Appointment other = (Appointment) obj;
-            return this.date.equals(other.date) && this.timeslot == other.timeslot && this.patient.equals(other.patient);
+    public int compareTo(Appointment o){
+        if(this.date.compareTo(o.date)!= 0){
+            return -1;
         }
-        return false;
+        if(this.timeslot != o.timeslot){
+            return -1;
+        }
+        return 0;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s at %s with %s [%s]", date, timeslot, patient, provider);
-    }
+
 }
