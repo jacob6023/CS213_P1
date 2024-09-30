@@ -1,80 +1,61 @@
+package org.example;
 public class List {
-    private static final int NOT_FOUND = -1;
-    private static final int INITIAL_CAPACITY = 4;
     private Appointment[] appointments;
-    private int size;
-
-    public List() {
-        this.appointments = new Appointment[INITIAL_CAPACITY];
-        this.size = 0;
-    }
-
-    private void grow() {
-        Appointment[] newAppointments = new Appointment[appointments.length + INITIAL_CAPACITY];
-        System.arraycopy(appointments, 0, newAppointments, 0, size);
-        appointments = newAppointments;
-    }
-
-    public void add(Appointment appointment) {
-        if (size == appointments.length) {
-            grow();
-        }
-        appointments[size++] = appointment;
-    }
-
-    public void remove(Appointment appointment) {
-        int index = find(appointment);
-        if (index != NOT_FOUND) {
-            for (int i = index; i < size - 1; i++) {
-                appointments[i] = appointments[i + 1];
-            }
-            appointments[--size] = null;
-        }
-    }
+    private int size; //number of appointments in the array
 
     private int find(Appointment appointment) {
-        for (int i = 0; i < size; i++) {
-            if (appointments[i].equals(appointment)) {
+        for (int i = 0; i < appointments.length; i++) {
+            if (appointments[i].compareTo(appointment) == 0) {
                 return i;
             }
         }
-        return NOT_FOUND;
+        return -1;
+    } //helper method
+
+    private void grow() {
+        int x = appointments.length;
+        Appointment[] newapp = new Appointment[x+4];
+        for(int i = 0; i< appointments.length; i++){
+            newapp[i] = appointments[i];
+        }
+        appointments= newapp;
+
+        // helper method to increase the capacity by 4
     }
 
-    //in place sort
-    private void sortAppointments() {
-        boolean swapped;
-        do {
-            swapped = false;
-            for (int i = 1; i < size; i++) {
-                if (appointments[i - 1].compareTo(appointments[i]) > 0) {
-                    Appointment temp = appointments[i];
-                    appointments[i] = appointments[i - 1];
-                    appointments[i - 1] = temp;
-                    swapped = true;
-                }
-            }
-        } while (swapped);
+    public boolean contains(Appointment appointment) {
+        List list = new List();
+        if(list.find(appointment)== 1){
+            return true;
+        }
+        // check before add/remove
+        return false; // placeholder return, logic to be added
+    }
+
+    public void add(Appointment appointment) {
+        int size = appointments.length;
+        appointments[size] = appointment;
+    }
+
+    public void remove(Appointment appointment) { //edgecase find if its not in list;
+        List list = new List();
+        int x = list.find(appointment);
+        appointments[x] = null; //removes appointment
+
+
+
     }
 
     public void printByPatient() {
-        sortAppointments(); //sortAppointments sorts by patient by default
-        for (Appointment appointment : appointments) {
-            if (appointment != null) System.out.println(appointment);
-        }
+        // ordered by patient profile, date/timeslot
     }
 
     public void printByLocation() {
-        //Assuming a different sort method for location
-        for (Appointment appointment : appointments) {
-            if (appointment != null) System.out.println(appointment);
-        }
+        // ordered by county, date/timeslot
     }
 
     public void printByAppointment() {
-        sortAppointments();
-        for (Appointment appointment : appointments) {
-            if (appointment != null) System.out.println(appointment);
-        }
+        // ordered by date/timeslot, provider name
     }
 }
+
