@@ -30,4 +30,9 @@ public enum Provider {
     public String getSpecialty() {
         return specialty;
     }
+    @Override
+    public String toString() {
+        return name + " (" + specialty + ") - " + town;
+    }
 }
+
