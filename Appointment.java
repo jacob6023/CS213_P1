@@ -39,6 +39,14 @@ public class Appointment implements Comparable <Appointment> {
         }
         return 0;
     }
+    @Override
+    public String toString() {
+        return "Appointment on " + date +
+                " at " + timeslot +
+                " with " + patient +
+                ", Provider: " + provider;
+    }
 
 
 }
+
