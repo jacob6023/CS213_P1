@@ -1,51 +1,39 @@
 public class MedicalRecord {
-    private static final int INITIAL_CAPACITY = 4;
     private Patient[] patients;
     private int size;
 
-    //Constructor
-    public MedicalRecord() {
-        patients = new Patient[INITIAL_CAPACITY];
+    //Constructor to initialize the MedicalRecord with a specific capacity
+    public MedicalRecord(int capacity) {
+        patients = new Patient[capacity];
         size = 0;
     }
 
-    //Method to add a patient to the medical record
+    // Method to add a new patient to the MedicalRecord
     public void add(Patient patient) {
+        // Check if the array needs to be expanded to accommodate more patients
         if (size == patients.length) {
-            grow();
+            expandCapacity();
         }
-        patients[size++] = patient;
+        patients[size++] = patient;  // Add the new patient and increment size
     }
 
-    //Helper method when array is full
-    private void grow() {
-        Patient[] newPatients = new Patient[patients.length + INITIAL_CAPACITY];
-        System.arraycopy(patients, 0, newPatients, 0, size);
-        patients = newPatients;
+    // Helper method to double the size of the patients array when more space is needed
+    private void expandCapacity() {
+        Patient[] newPatients = new Patient[patients.length * 2];  // Double the current capacity
+        System.arraycopy(patients, 0, newPatients, 0, patients.length);  // Copy existing patients to new array
+        patients = newPatients;  // Replace the old array with the new one
     }
 
-    //Prints patients
-    public void printAllPatients() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(patients[i].toString());
+    // Method to get the current number of patients in the MedicalRecord
+    public int getSize() {
+        return size;
+    }
+
+    // Method to get a Patient at a specific index (for internal use, testing, or specific access needs)
+    public Patient getPatient(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
-    }
-
-    //Test MedicalRecord class
-    public static void main(String[] args) {
-        MedicalRecord record = new MedicalRecord();
-
-        // Sample patients
-        Profile profile1 = new Profile("John", "Doe", new Date(12, 13, 1989));
-        Profile profile2 = new Profile("Jane", "Smith", new Date(5, 20, 1990));
-
-        Patient patient1 = new Patient(profile1);
-        Patient patient2 = new Patient(profile2);
-
-        record.add(patient1);
-        record.add(patient2);
-
-       //Print
-        record.printAllPatients();
+        return patients[index];
     }
 }
