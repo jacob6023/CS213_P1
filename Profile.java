@@ -2,7 +2,7 @@
 public class Profile implements Comparable<Profile> {
     private String fName;
     private String lName;
-    private Date dob;  // Using the custom Date class provided
+    private Date dob;  //using the custom Date class provided
 
     public Profile(String fName, String lName, int month, int day, int year) {
         this.fName = fName;
@@ -39,33 +39,33 @@ public class Profile implements Comparable<Profile> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;  // Check for reference equality.
-        if (obj == null || !(obj instanceof Profile)) return false;  // Check for null and ensure the object is an instance of Profile.
+        if (this == obj) return true;  //check for reference equality
+        if (obj == null || !(obj instanceof Profile)) return false;  //check for null and ensure the object is an instance of Profile
 
-        Profile other = (Profile) obj;  //Safe cast after instanceof check.
+        Profile other = (Profile) obj;  //safe cast after instanceof check
 
-        //Check first name
+        //check first name
         if (fName != null) {
             if (!fName.equals(other.fName)) return false;
         } else if (other.fName != null) {
             return false;
         }
 
-        //Check last name
+        //check last name
         if (lName != null) {
             if (!lName.equals(other.lName)) return false;
         } else if (other.lName != null) {
             return false;
         }
 
-        //Check date of birth
+        //check date of birth
         if (dob != null) {
             if (!dob.equals(other.dob)) return false;
         } else if (other.dob != null) {
             return false;
         }
 
-        return true;  // If all fields are equal, return true.
+        return true;  //if all fields are equal return true.
     }
 
 
@@ -76,7 +76,7 @@ public class Profile implements Comparable<Profile> {
         Profile p2 = new Profile("Mane", "Loo", 12, 31, 2000);
         Profile p3 = new Profile("John", "Smith", 1, 1, 1990);
 
-        // Comparing p1 with p3 - They should be identical
+        //compare p1 p3 should be identical
         System.out.println("Comparing p1 to p3 (should return 0): " + p1.compareTo(p3));
         System.out.println("Checking equality of p1 and p3 (should be true): " + p1.equals(p3));
 
